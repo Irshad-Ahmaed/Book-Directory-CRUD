@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
-// import userRoutes from './routes/users.js';
+import bookRoutes from './routes/addBook.js'
 
 const app = express();
 app.use(express.json({limit:"30mb", extended: true}))
@@ -15,7 +15,7 @@ app.get('/',(req,res) => {
     res.send("This is a Book directory API")
 })
 
-// app.use('/user', userRoutes)
+app.use('/', bookRoutes)
 
 const Connection_URL = "mongodb+srv://2021ee29ir:Irshad@book-directory.ghbifhk.mongodb.net/?retryWrites=true&w=majority&appName=Book-Directory"
 
