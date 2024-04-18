@@ -1,5 +1,5 @@
 import express from 'express'
-import { postBook } from '../controllers/importBook';
+import { postBook } from '../controllers/importBook.js';
 
 const router = express.Router();
 

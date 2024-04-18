@@ -36,8 +36,8 @@ export const BookDisplay = () => {
                 </div>
 
                 <div className='custom-icon' style={{margin:"0 0px 0 25px"}}>
-                    <span className='edit-icon'><i class="bi bi-pencil-square"></i></span>
-                    <span className='delete-icon'><i class="bi bi-trash-fill"></i></span>
+                    <span className='edit-icon'><i className="bi bi-pencil-square"></i></span>
+                    <span className='delete-icon'><i className="bi bi-trash-fill"></i></span>
                 </div>
             </div>
 

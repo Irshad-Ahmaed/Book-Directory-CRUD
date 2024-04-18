@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './createBook.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { postBook } from '../actions/postBok'
 
 export const CreateBook = () => {
   const navigate = useNavigate()
@@ -10,8 +11,8 @@ export const CreateBook = () => {
   const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
   const [bookType, setBookType] = useState('')
-  const [noOfPages, setNoOfPages] = useState('')
-  const [rating, setRating] = useState('')
+  const [noOfPages, setNoOfPages] = useState(Number)
+  const [rating, setRating] = useState(Number)
 
   const handleSubmit =(e)=> {
     e.preventDefault()
@@ -20,7 +21,7 @@ export const CreateBook = () => {
       alert("please fill all the required field")
     }
     else{
-      dispatch({name, author, bookType, noOfPages, rating}, navigate)
+      dispatch(postBook({name, author, bookType, noOfPages, rating}, navigate))
     }
     // alert("Book added successfully")
     // navigate('/')
