@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './createBook.css'
 import { useNavigate } from 'react-router-dom'
 
 export const CreateBook = () => {
   const navigate = useNavigate()
 
-  const handleSubmit =()=> {
+  const [title, setTitle] = useState('')
+
+  const handleSubmit =(e)=> {
+    e.preventDefault()
     alert("Book added successfully")
     navigate('/')
     window.location.reload();
@@ -18,7 +21,7 @@ export const CreateBook = () => {
 
           <label htmlFor='name'>
             <h4>Book Title:</h4>
-            <input type='text' placeholder='Ex: Jungle Book' name='name' id='name' />
+            <input type='text' onChange={(e)=> {setTitle(e.target.value)}} placeholder='Ex: Jungle Book' name='name' id='name' />
           </label>
 
           <label htmlFor='author'>
@@ -37,8 +40,8 @@ export const CreateBook = () => {
           </label>
 
           <label htmlFor='rating'>
-            <h4>Rating out of 10:</h4>
-            <input type='number' min="0" max="10" placeholder='Ex: 5' name='rating' id='rating' />
+            <h4>Rating:</h4>
+            <input type='number' min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
           </label>
 
           <button type='submit' className='submit-btn'>Post the book</button>
