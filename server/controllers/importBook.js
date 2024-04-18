@@ -1,7 +1,7 @@
 import Book from '../models/detailBook.js'
 
 export const postBook = async (req, res) => {
-    const {name, author, type, pages, rating, postedOn} =req.body;
+    const {name, author, bookType, noOfPages, rating} = req.body;
 
     try{
         

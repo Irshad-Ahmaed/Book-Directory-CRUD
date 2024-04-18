@@ -1,17 +1,30 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './createBook.css'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 export const CreateBook = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const [title, setTitle] = useState('')
+  const [name, setName] = useState('')
+  const [author, setAuthor] = useState('')
+  const [bookType, setBookType] = useState('')
+  const [noOfPages, setNoOfPages] = useState('')
+  const [rating, setRating] = useState('')
 
   const handleSubmit =(e)=> {
     e.preventDefault()
-    alert("Book added successfully")
-    navigate('/')
-    window.location.reload();
+
+    if (!name || !author || !bookType || !noOfPages || !rating) {
+      alert("please fill all the required field")
+    }
+    else{
+      dispatch({name, author, bookType, noOfPages, rating}, navigate)
+    }
+    // alert("Book added successfully")
+    // navigate('/')
+    // window.location.reload();
   }
   
   return (
@@ -21,27 +34,27 @@ export const CreateBook = () => {
 
           <label htmlFor='name'>
             <h4>Book Title:</h4>
-            <input type='text' onChange={(e)=> {setTitle(e.target.value)}} placeholder='Ex: Jungle Book' name='name' id='name' />
+            <input type='text' onChange={(e)=> {setName(e.target.value)}} placeholder='Ex: Jungle Book' name='name' id='name' />
           </label>
 
           <label htmlFor='author'>
             <h4>Author:</h4>
-            <input type='text' placeholder='Ex: Rudyard Kipling' name='author' id='author' />
+            <input type='text' onChange={(e)=> {setAuthor(e.target.value)}} placeholder='Ex: Rudyard Kipling' name='author' id='author' />
           </label>
 
           <label htmlFor='bookType'>
             <h4>Book Type:</h4>
-            <input type='text' placeholder='Ex: Novel' name='bookType' id='bookType' />
+            <input type='text' onChange={(e)=> {setBookType(e.target.value)}} placeholder='Ex: Novel' name='bookType' id='bookType' />
           </label>
 
-          <label htmlFor='No of pages'>
+          <label htmlFor='noOfPages'>
             <h4>No of pages:</h4>
-            <input type='number' placeholder='Ex: 200' name='No of pages' id='No of pages' />
+            <input type='number' onChange={(e)=> {setNoOfPages(e.target.value)}} placeholder='Ex: 200' name='noOfPages' id='noOfPages' />
           </label>
 
           <label htmlFor='rating'>
             <h4>Rating:</h4>
-            <input type='number' min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
+            <input type='number' onChange={(e)=> {setRating(e.target.value)}} min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
           </label>
 
           <button type='submit' className='submit-btn'>Post the book</button>
