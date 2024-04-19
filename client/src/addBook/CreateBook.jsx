@@ -23,9 +23,6 @@ export const CreateBook = () => {
     else{
       dispatch(postBook({name, author, bookType, noOfPages, rating}, navigate))
     }
-    // alert("Book added successfully")
-    // navigate('/')
-    // window.location.reload();
   }
   
   return (

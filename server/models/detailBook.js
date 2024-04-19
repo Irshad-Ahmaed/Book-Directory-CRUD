@@ -6,6 +6,7 @@ const bookSchema = mongoose.Schema({
     bookType:{type: String, required: true},
     noOfPages:{type: Number, required: true},
     rating:{type: Number, required: true},
+    userId: {type:String},
     postedOn: {type: Date, default: Date.now}
 })
 

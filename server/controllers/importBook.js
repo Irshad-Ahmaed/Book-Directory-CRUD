@@ -10,3 +10,12 @@ export const postBook = async (req, res) => {
         res.status(500).json("Something went wrong...")
     }
 }
+
+export const getAllBooks = async (req, res) => {
+    try {
+        const bookList = await Book.find();
+        res.status(200).json(bookList);
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}
