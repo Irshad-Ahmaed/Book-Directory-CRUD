@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import './createBook.css'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { postBook } from '../actions/postBok'
+import { postBook, updateBook } from '../actions/postBok'
 
-export const CreateBook = () => {
+export const CreateBook = (id) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
@@ -16,29 +17,33 @@ export const CreateBook = () => {
 
   const handleSubmit =(e)=> {
     e.preventDefault()
-
+    
     if (!name || !author || !bookType || !noOfPages || !rating) {
       alert("please fill all the required field")
     }
-    else{
+
+    if(!location.state?.id){
       dispatch(postBook({name, author, bookType, noOfPages, rating}, navigate))
+    }
+    else{
+      dispatch(updateBook(location.state?.id, {name, author, bookType, noOfPages, rating}, navigate))
     }
   }
 
-  const location = useLocation()
+  
   
   return (
     <section>
 
       <div className='home-container' style={{margin:"0 0 20px 0"}}>
         {
-          (location.pathname == '/displayBook') ?
+          (location.pathname === '/displayBook') ?
           <Link to='/postBook' className='add-btn'>Add a book</Link>
           :
           <Link to='/displayBook' className='add-btn'>Show books</Link>
         }
       </div>
-
+        
       <div className='form-div'>
         <form onSubmit={handleSubmit}>
 
@@ -67,7 +72,13 @@ export const CreateBook = () => {
             <input type='number' onChange={(e)=> {setRating(e.target.value)}} min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
           </label>
 
-          <button type='submit' className='submit-btn'>Post the book</button>
+          {
+            !location.state?.id
+            ?
+            <button type='submit' className='submit-btn'>Post the book</button>
+            :
+            <button type='submit' className='submit-btn'>Update book</button>
+          }
         </form>
       </div>
     </section>

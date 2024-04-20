@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import '../App.css'
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { deleteBook, fetchAllBooks } from '../actions/postBok'
@@ -11,17 +11,20 @@ export const BookDisplay = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const location = useLocation()
 
     useEffect(()=>{
         dispatch(fetchAllBooks())
-    }, [])
+    }, [dispatch])
 
     const handleDelete =(id)=>{
         dispatch(deleteBook(id, navigate))
     }
 
-    const location = useLocation()
+    const handleUpdate =(id)=>{
+        navigate('/postBook', {state:{id}})
+    }
+    
 
   return (
 
@@ -29,12 +32,12 @@ export const BookDisplay = () => {
 
         <div className='home-container'>
             {
-                (location.pathname == '/postBook') ?
+                (location.pathname === '/postBook') ?
                 <Link to='/displayBook' className='add-btn'>Show books</Link>
                 :
                 <>
                     {
-                        (location.pathname == '/displayBook') ?
+                        (location.pathname === '/displayBook') ?
                         <Link to='/postBook' style={{margin:"0 0 0 15px"}} className='add-btn'>Add a book</Link>
                         :
                         <Link to='/displayBook' className='add-btn'>Show books</Link>
@@ -44,7 +47,7 @@ export const BookDisplay = () => {
         </div>
 
         {
-            bookList.data.length === 0
+            bookList.data === null
             ?
             <h2 style={{textAlign:"center", margin:"50px 0"}}>No Data Available...</h2>
             :
@@ -80,7 +83,7 @@ export const BookDisplay = () => {
                             </div>
 
                             <div className='custom-icon' style={{margin:"0 0px 0 25px"}}>
-                                <span className='edit-icon'><i className="bi bi-pencil-square"></i></span>
+                                <span className='edit-icon'><i onClick={() => handleUpdate(book._id)} className="bi bi-pencil-square"></i></span>
                                 <span className='delete-icon'><i onClick={() => handleDelete(book._id)} className="bi bi-trash-fill"></i></span>
                             </div>
                         </div>

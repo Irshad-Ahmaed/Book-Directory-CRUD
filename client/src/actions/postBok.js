@@ -23,8 +23,19 @@ export const fetchAllBooks = () => async (dispatch) => {
 
 export const deleteBook = (id, navigate) => async (dispatch) => {
     try {
-        console.log(id)
-        const {data} = await api.deleteBook(id)
+        await api.deleteBook(id)
+        dispatch(fetchAllBooks())
+        navigate('/displayBook')
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateBook = (id, navValue, navigate) => async (dispatch) => {
+    try {
+        
+        await api.updateBook(id, navValue)
         dispatch(fetchAllBooks())
         navigate('/displayBook')
 
