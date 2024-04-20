@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './createBook.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postBook } from '../actions/postBok'
-import UIDesign from '../components/UIDesign'
 
 export const CreateBook = () => {
   const navigate = useNavigate()
@@ -26,12 +25,20 @@ export const CreateBook = () => {
     }
   }
 
-  const parseValue = () => {
-    <UIDesign bool= {true} />
-  }
+  const location = useLocation()
   
   return (
     <section>
+
+      <div className='home-container' style={{margin:"0 0 20px 0"}}>
+        {
+          (location.pathname == '/displayBook') ?
+          <Link to='/postBook' className='add-btn'>Add a book</Link>
+          :
+          <Link to='/displayBook' className='add-btn'>Show books</Link>
+        }
+      </div>
+
       <div className='form-div'>
         <form onSubmit={handleSubmit}>
 
@@ -60,7 +67,7 @@ export const CreateBook = () => {
             <input type='number' onChange={(e)=> {setRating(e.target.value)}} min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
           </label>
 
-          <button type='submit' onClick={parseValue} className='submit-btn'>Post the book</button>
+          <button type='submit' className='submit-btn'>Post the book</button>
         </form>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import {BrowserRouter as Router} from 'react-router-dom'
-import UIDesign from './components/UIDesign';
 import AllRoutes from './AllRoutes';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -15,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <UIDesign />
         <AllRoutes />
       </Router>
     </div>

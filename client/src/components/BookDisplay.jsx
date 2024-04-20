@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import '../App.css'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams, Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { deleteBook, fetchAllBooks } from '../actions/postBok'
@@ -21,9 +21,27 @@ export const BookDisplay = () => {
         dispatch(deleteBook(id, navigate))
     }
 
+    const location = useLocation()
+
   return (
 
     <div className='main-container'>
+
+        <div className='home-container'>
+            {
+                (location.pathname == '/postBook') ?
+                <Link to='/displayBook' className='add-btn'>Show books</Link>
+                :
+                <>
+                    {
+                        (location.pathname == '/displayBook') ?
+                        <Link to='/postBook' style={{margin:"0 0 0 15px"}} className='add-btn'>Add a book</Link>
+                        :
+                        <Link to='/displayBook' className='add-btn'>Show books</Link>
+                    }
+                </>
+            }
+        </div>
 
         {
             bookList.data.length === 0

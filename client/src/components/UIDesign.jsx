@@ -8,12 +8,12 @@ const UIDesign = () => {
   return (
     <div className='home-container'>
         {
-            (location.pathname == '/postBook') ?
+            (location.pathname === '/postBook') ?
             <Link to='/displayBook' className='add-btn'>Show books</Link>
             :
             <>
                 {
-                    (location.pathname == '/displayBook') ?
+                    (location.pathname === '/displayBook') ?
                     <Link to='/postBook' className='add-btn'>Add a book</Link>
                     :
                     <Link to='/displayBook' className='add-btn'>Show books</Link>
