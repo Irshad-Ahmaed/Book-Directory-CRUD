@@ -1,32 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../App.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const UIDesign = () => {
-
-    const [toggle, setToggle] = useState(true)
-    const [addToggle, setAddToggle] = useState(true)
-
-    const handleToggle =()=>{
-        setToggle(false)
-        setAddToggle(true)
-    }
-
-    const addHandleToggle =()=>{
-        setAddToggle(false)
-        setToggle(true)
-    }
+    const location = useLocation()
 
   return (
     <div className='home-container'>
         {
-            toggle && 
-            <Link to='/displayBook' onClick={handleToggle} className='add-btn'>Show books</Link>
-        }
-
-        {
-            addToggle && 
-            <Link to='/postBook' onClick={addHandleToggle} className='add-btn'>Add a book</Link>
+            (location.pathname == '/postBook') ?
+            <Link to='/displayBook' className='add-btn'>Show books</Link>
+            :
+            <>
+                {
+                    (location.pathname == '/displayBook') ?
+                    <Link to='/postBook' className='add-btn'>Add a book</Link>
+                    :
+                    <Link to='/displayBook' className='add-btn'>Show books</Link>
+                }
+            </>
         }
     </div>
   )

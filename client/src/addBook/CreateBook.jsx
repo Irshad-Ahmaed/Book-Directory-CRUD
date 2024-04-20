@@ -3,6 +3,7 @@ import './createBook.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postBook } from '../actions/postBok'
+import UIDesign from '../components/UIDesign'
 
 export const CreateBook = () => {
   const navigate = useNavigate()
@@ -23,6 +24,10 @@ export const CreateBook = () => {
     else{
       dispatch(postBook({name, author, bookType, noOfPages, rating}, navigate))
     }
+  }
+
+  const parseValue = () => {
+    <UIDesign bool= {true} />
   }
   
   return (
@@ -55,7 +60,7 @@ export const CreateBook = () => {
             <input type='number' onChange={(e)=> {setRating(e.target.value)}} min="0" max="10" placeholder='Ex: rating 0-10' name='rating' id='rating' />
           </label>
 
-          <button type='submit' className='submit-btn'>Post the book</button>
+          <button type='submit' onClick={parseValue} className='submit-btn'>Post the book</button>
         </form>
       </div>
     </section>

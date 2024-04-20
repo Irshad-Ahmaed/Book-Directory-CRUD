@@ -15,7 +15,7 @@ app.get('/',(req,res) => {
     res.send("This is a Book directory API")
 })
 
-app.use('/', bookRoutes)
+app.use('/book', bookRoutes)
 
 const Connection_URL = "mongodb+srv://2021ee29ir:Irshad@book-directory.ghbifhk.mongodb.net/?retryWrites=true&w=majority&appName=Book-Directory"
 

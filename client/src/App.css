@@ -7,9 +7,11 @@
 .main-container{
     width: 100%;
     height: 100vh;
+}
+
+.fetch-container{
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .bookImg{
@@ -18,15 +20,18 @@
     max-height: 250px;
     border: 1px solid gray;
     border-radius: 5px;
-    margin: 50px 50px 0 50px;
+    margin: 0px 50px 0 50px;
     box-shadow: 1px 2px 13px gray;
 }
-.bookImg img{
+img{
     width: 200px;
 }
 
 .detail-container{
-    margin: 40px 0px 0 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 20px 0px 0 0px;
     padding: 10px;
 }
 
