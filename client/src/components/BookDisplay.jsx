@@ -21,8 +21,8 @@ export const BookDisplay = () => {
         dispatch(deleteBook(id, navigate))
     }
 
-    const handleUpdate =(id)=>{
-        navigate('/postBook', {state:{id}})
+    const handleUpdate =(id, name, author, type, pages, rating)=>{
+        navigate('/postBook', {state:{id, name, author, type, pages, rating}})
     }
     
 
@@ -83,7 +83,7 @@ export const BookDisplay = () => {
                             </div>
 
                             <div className='custom-icon' style={{margin:"0 0px 0 25px"}}>
-                                <span className='edit-icon'><i onClick={() => handleUpdate(book._id)} className="bi bi-pencil-square"></i></span>
+                                <span className='edit-icon'><i onClick={() => handleUpdate(book._id, book.name, book.author, book.bookType, book.noOfPages, book.rating)} className="bi bi-pencil-square"></i></span>
                                 <span className='delete-icon'><i onClick={() => handleDelete(book._id)} className="bi bi-trash-fill"></i></span>
                             </div>
                         </div>

@@ -6,6 +6,6 @@ const router = express.Router();
 router.post('/postBook', postBook)
 router.get('/getBook', getAllBooks)
 router.delete('/delete/:id', deleteBook)
-router.patch('/update/:id', updateBook);
+router.put('/update/:id', updateBook);
 
 export default router
